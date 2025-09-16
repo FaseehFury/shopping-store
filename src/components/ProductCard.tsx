@@ -1,9 +1,11 @@
 "use client";
+import useCartStore from "@/store/cartStore";
 import { ProductType } from "@/types";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 //if client component we can use useParams hook not async
 
@@ -12,6 +14,8 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     size: product.sizes[0],
     color: product.colors[0],
   });
+
+  const { addToCart } = useCartStore();
   const handleProductType = ({
     type,
     value,
@@ -20,6 +24,16 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     value: string;
   }) => {
     setProductTypes((prev) => ({ ...prev, [type]: value }));
+  };
+
+  const handleAddToCart = () => {
+    addToCart({
+      ...product,
+      quantity: 1,
+      selectedSize: productTypes.size,
+      selectedColor: productTypes.color,
+    });
+    toast.success("Product added to cart!");
   };
 
   return (
@@ -53,7 +67,9 @@ const ProductCard = ({ product }: { product: ProductType }) => {
               }
             >
               {product.sizes.map((size) => (
-                <option value={size}>{size.toUpperCase()}</option>
+                <option key={`${product.id}-${size}`} value={size}>
+                  {size.toUpperCase()}
+                </option>
               ))}
             </select>
           </div>
@@ -85,7 +101,10 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         {/* PRICE AND ADD TO CARD BUTTON */}
         <div className="flex items-center justify-between">
           <p className="font-medium">{product.price.toFixed(2)}</p>
-          <button className="ring-1 ring-gray-200 shadow-lg rounded-md px-2 py-1 text-sm cursor-pointer hover:text-white hover:bg-black transition-all duration-300 flex items-center gap-2">
+          <button
+            onClick={handleAddToCart}
+            className="ring-1 ring-gray-200 shadow-lg rounded-md px-2 py-1 text-sm cursor-pointer hover:text-white hover:bg-black transition-all duration-300 flex items-center gap-2"
+          >
             <ShoppingCart className="w-4 h-4" />
             Add to Cart
           </button>
