@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "E-commerce App",
-  description: "Next.js E-commerce UI",
+  title: "Trendfury - Best Clothes",
+  description: "Trendfury is the best clothes store in the world",
 };
 
 export default function RootLayout({
