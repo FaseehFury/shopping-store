@@ -24,7 +24,7 @@ const chartData = [
   { month: "January", total: 186, successful: 80 },
   { month: "February", total: 305, successful: 200 },
   { month: "March", total: 237, successful: 120 },
-  { month: "April", total: 73, successful: 190 },
+  { month: "April", total: 173, successful: 100 },
   { month: "May", total: 209, successful: 130 },
   { month: "June", total: 214, successful: 140 },
 ];
@@ -46,8 +46,8 @@ const AppBarChart = () => {
           <YAxis tickLine={false} tickMargin={10} axisLine={false} />
           <ChartTooltip content={<ChartTooltipContent />} />
           <ChartLegend content={<ChartLegendContent />} />
-          <Bar dataKey="total" fill="var(--color-desktop)" radius={4} />
-          <Bar dataKey="successful" fill="var(--color-mobile)" radius={4} />
+          <Bar dataKey="total" fill="var(--color-total)" radius={4} />
+          <Bar dataKey="successful" fill="var(--color-successful)" radius={4} />
         </BarChart>
       </ChartContainer>
     </div>
