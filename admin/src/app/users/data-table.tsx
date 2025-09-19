@@ -48,14 +48,13 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  console.log(rowSelection);
   return (
     <div className="rounded-md border">
       {Object.keys(rowSelection).length > 0 && (
         <div className="flex justify-end">
           <button className="flex items-center gap-2 bg-red-500 text-white text-sm py-1 px-2 rounded-md m-4 cursor-pointer">
             <Trash2 className="w-4 h-4" />
-            Delete Payments(s)
+            Delete Users(s)
           </button>
         </div>
       )}
